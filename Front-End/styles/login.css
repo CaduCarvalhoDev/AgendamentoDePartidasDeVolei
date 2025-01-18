@@ -1,5 +1,5 @@
 body {
-    background-image: url('/imagens/banner.png'); 
+    background-image: url('/Front-End/imagens/banner.png'); 
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -68,7 +68,7 @@ h2 {
     font-weight: bold;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); 
 
-    background: url('/imagens/fundo\ azul.png') no-repeat center center;
+    background: url('/Front-End/imagens/fundo\ azul.png') no-repeat center center;
     background-size: cover; 
 }
 
