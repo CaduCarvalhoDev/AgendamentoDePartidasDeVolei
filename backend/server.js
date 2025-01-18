@@ -1,6 +1,6 @@
 import express from 'express'
 import { PrismaClient } from '@prisma/client'
-// import { body, validationResult } from 'express-validator'
+import { body, validationResult } from 'express-validator'
 
 const prisma = new PrismaClient()
 
@@ -8,23 +8,23 @@ const app = express()
 app.use(express.json())
 
 
-// const validarUsuario = [
-//     body('email').isEmail(),
-//     body('name').notEmpty(),
-//     body('login').notEmpty(),
-//     body('senha').notEmpty(),
-//     body('adm').isBoolean(),
-// ]
+const validarUsuario = [
+    body('email').isEmail(),
+    body('name').notEmpty(),
+    body('login').notEmpty(),
+    body('senha').notEmpty(),
+    body('adm').isBoolean(),
+]
 
 // ------------ USUARIOS ------------
 
-app.post('/usuarios',  async (req, res) => {
+app.post('/usuarios', validarUsuario, async (req, res) => {
 
-    // const erros = validationResult(req)
+    const erros = validationResult(req)
     
-    // if (!erros.isEmpty()){
-    //     return res.status(400).json({erros: erros.array()})
-    // }
+    if (!erros.isEmpty()){
+        return res.status(400).json({erros: erros.array()})
+    }
 
     try {
         await prisma.usuario.create({
@@ -46,29 +46,36 @@ app.post('/usuarios',  async (req, res) => {
 })
 
 
-// GET em todos os usuários
+// GET
 app.get('/usuarios', async (req, res) => {
 
-    const users = await prisma.usuario.findMany()
+    let filtros = {}
 
-    res.status(200).json(users)
-})
+    if (req.query.name) filtros.name = req.query.name
+    if (req.query.email) filtros.email = req.query.email
+    if (req.query.id) filtros.id = req.query.id
+    if (req.query.login) filtros.login = req.query.login
 
-// GET pelo id
-app.get('/usuarios/:id', async (req, res) => {
-
-    const { id } = req.params;
-
-    const user = await prisma.usuario.findUnique({
-        where: { id: id },
-    });
-
-    if (user) {
-        res.status(200).json(user);
+    if (req.query.adm !== undefined) {
+        filtros.adm = req.query.adm === 'true'
     }
-    else {
-        res.status(404).json({message: "Usuário não encontrado."});
+
+
+    try{
+        const users = await prisma.usuario.findMany({
+            where: filtros
+        })
+
+        if (users.length === 0){
+            return res.status(404).json({message: "Usuário não encontrado"})
+        }
+
+        res.status(200).json(users)
     }
+    catch{
+        res.status(400).json({message: "Informação errada!"})
+    }
+
 })
 
 
@@ -122,28 +129,32 @@ app.post('/quadras', async (req, res) => {
 
 app.get('/quadras', async (req, res) => {
 
-    const quadras = await prisma.quadras.findMany()
-
-    res.status(200).json(quadras)
-
-})
+    let quadras = []
 
 
-app.get('/quadras/:id', async (req,res) => {
+    try{
+        quadras = await prisma.quadras.findMany({
+            where: {
+                nome: req.query.nome,
+                id: req.query.id
+            }
+        })
+
+        if (quadras.length === 0){
+            return res.status(404).json({message: "Quadra não encontrada"})
+        }
+
+
+        res.status(200).json(quadras)
+    }
+    catch{
+        res.status(400).json({message: "Informação errada!"})
+    }
     
-    const {id} = req.params;
 
-    const quadra = await prisma.quadras.findUnique({
-        where: { id: id},
-    })
-
-    if (quadra){
-        res.status(200).json(quadra);
-    }
-    else {
-        res.status(404).json({message: 'Quadra não encontrada'})
-    }
 })
+
+
 
 app.delete('/quadras/:id', async (req, res) => {
 
@@ -181,29 +192,38 @@ app.post('/eventos', async (req, res) => {
 })
 
 app.get('/eventos', async (req, res) => {
+
+    let filtros = {}
+
+    if (req.query.nome) filtros.nome = req.query.nome
+    if (req.query.data_horario) filtros.data_horario = req.query.data_horario
+    if (req.query.id) filtros.id = req.query.id
+    if (req.query.id_quadra) filtros.id_quadra = req.query.id_quadra
+    if (req.query.id_usuario) filtros.id_usuario = req.query.id_usuario
     
-    const eventos = await prisma.eventos.findMany()
 
-    res.status(201).json(eventos)
-
-})
-
-
-
-app.get('/eventos/:id', async (req,res) => {
+    if (req.query.confirmacao !== undefined) {
+        filtros.confirmacao= req.query.confirmacao === 'true'
+    }
     
-    const {id} = req.params;
 
-    const evento = await prisma.eventos.findUnique({
-        where: {id: id,}
-    })
+    try{
+        const eventos = await prisma.eventos.findMany({
+            where: filtros
+        })
 
-    if (evento){
-        res.status(200).json(evento);
+        if (eventos.length === 0){
+            return res.status(404).json({message: "Evento não encontrado"})
+        }
+
+
+        res.status(200).json(eventos)
     }
-    else{
-        res.status(404).json({message: 'Evento não encontrado'});
+    catch{
+        res.status(400).json({message: "informação errada!"})
     }
+    
+
 })
 
 app.put('/eventos/:id', async (req, res) => {
