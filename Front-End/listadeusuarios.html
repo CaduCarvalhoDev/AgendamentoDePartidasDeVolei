@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VôleiMatch Usuários</title>
+    <link rel="stylesheet" href="/styles/listadeusuarios.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="back-arrow">
+        <a href="reserva.html">←</a>
+    </div>
+    <div class="header">USUÁRIOS CADASTRADOS</div>
+    <div class="search-container">
+        <input type="text" id="search-bar" class="search-bar" placeholder="Buscar usuário...">
+        <button class="search-button"><i class="fas fa-search"></i></button>
+    </div>
+    <div class="container">
+        <div class="grid">
+           
+            <div class="card" onclick="redirectToProfile(this)">
+                <div class="icon"><i class="fas fa-user"></i></div>
+                <div class="login-info">Login: caduzada34573</div>
+            </div>
+            <div class="card" onclick="redirectToProfile(this)">
+                <div class="icon"><i class="fas fa-user"></i></div>
+                <div class="login-info">Login: gustavo12345</div>
+            </div>
+            <div class="card" onclick="redirectToProfile(this)">
+                <div class="icon"><i class="fas fa-user"></i></div>
+                <div class="login-info">Login: maria67890</div>
+            </div>
+            <div class="card" onclick="redirectToProfile(this)">
+                <div class="icon"><i class="fas fa-user"></i></div>
+                <div class="login-info">Login: ana00123</div>
+            </div>
+            <div class="card" onclick="redirectToProfile(this)">
+                <div class="icon"><i class="fas fa-user"></i></div>
+                <div class="login-info">Login: ana00123</div>
+            </div>
+            <div class="card" onclick="redirectToProfile(this)">
+                <div class="icon"><i class="fas fa-user"></i></div>
+                <div class="login-info">Login: ana00123</div>
+            </div>
+            <div class="card" onclick="redirectToProfile(this)">
+                <div class="icon"><i class="fas fa-user"></i></div>
+                <div class="login-info">Login: ana00123</div>
+            </div>
+            <div class="card" onclick="redirectToProfile(this)">
+                <div class="icon"><i class="fas fa-user"></i></div>
+                <div class="login-info">Login: ana00123</div>
+            </div>
+            <div class="card" onclick="redirectToProfile(this)">
+                <div class="icon"><i class="fas fa-user"></i></div>
+                <div class="login-info">Login: ana00123</div>
+            </div>
+            <div class="card" onclick="redirectToProfile(this)">
+                <div class="icon"><i class="fas fa-user"></i></div>
+                <div class="login-info">Login: ana00123</div>
+            </div>
+            <div class="card" onclick="redirectToProfile(this)">
+                <div class="icon"><i class="fas fa-user"></i></div>
+                <div class="login-info">Login: ana00123</div>
+            </div>
+            <div class="card" onclick="redirectToProfile(this)">
+                <div class="icon"><i class="fas fa-user"></i></div>
+                <div class="login-info">Login: ana00123</div>
+            </div>
+            <div class="card" onclick="redirectToProfile(this)">
+                <div class="icon"><i class="fas fa-user"></i></div>
+                <div class="login-info">Login: ana00123</div>
+            </div>
+            <div class="card" onclick="redirectToProfile(this)">
+                <div class="icon"><i class="fas fa-user"></i></div>
+                <div class="login-info">Login: ana00123</div>
+            </div>
+            <div class="card" onclick="redirectToProfile(this)">
+                <div class="icon"><i class="fas fa-user"></i></div>
+                <div class="login-info">Login: ana00123</div>
+            </div>
+            <div class="card" onclick="redirectToProfile(this)">
+                <div class="icon"><i class="fas fa-user"></i></div>
+                <div class="login-info">Login: ana00123</div>
+            </div>
+        </div>
+    </div>
+    <script>
+        
+        document.getElementById('search-bar').addEventListener('input', function () {
+            const query = this.value.toLowerCase();
+            const cards = document.querySelectorAll('.card');
+            
+            cards.forEach(card => {
+                const login = card.querySelector('.login-info').textContent.toLowerCase();
+                if (login.includes(query)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+
+        
+        function redirectToProfile(cardElement) {
+           
+            const loginText = cardElement.querySelector('.login-info').textContent;
+            const login = loginText.replace('Login: ', '').trim();
+
+            
+            window.location.href = `editarperfilADM.html?login=${login}`;
+        }
+    </script>
+</body>
+</html>

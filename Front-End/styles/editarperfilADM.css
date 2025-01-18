@@ -1,0 +1,139 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-image: url('/imagens/fundo\ azul.png');
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: white;
+}
+
+.container {
+    text-align: center;
+    width: 100%;
+    max-width: 400px;
+}
+
+.back-arrow {
+    position: absolute;
+    top: 50px; 
+    left: 200px; 
+    font-size: 50px;
+    cursor: pointer;
+    color: white; 
+}
+
+.back-arrow a {
+    text-decoration: none; 
+    color: inherit; 
+    font-size: 50px; 
+    font-weight: bold; 
+}
+
+.back-arrow a:hover {
+    color: #000; 
+}
+
+.title {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #fff;
+}
+
+.profile-box {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    color: #333;
+}
+
+.profile-title {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.profile-icon {
+    font-size: 48px;
+    margin-bottom: 20px;
+}
+
+.profile-form label {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 5px;
+    text-align: left;
+}
+
+.profile-form input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+.password-field {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.password-field input {
+    flex: 1;
+}
+
+.toggle-password {
+    background: none;
+    border: none;
+    cursor: pointer;
+    position: absolute;
+    right: 10px;
+    font-size: 16px;
+}
+
+.form-buttons {
+    display: flex;
+    flex-direction: column; 
+    gap: 10px; 
+    margin-top: 20px;
+}
+
+.btn-confirm, .btn-delete {
+    width: 100%; 
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid; 
+    border-radius: 50px; 
+    cursor: pointer;
+    background: none;
+    font-weight: bold; 
+}
+
+.btn-confirm {
+    border-color: #154983; 
+    color: #154983; 
+}
+
+.btn-confirm:hover {
+    background-color:#154983; 
+    color: white; 
+}
+
+.btn-delete {
+    border-color: #f44336; 
+    color: #f44336; 
+}
+
+.btn-delete:hover {
+    background-color: #f44336; 
+    color: white; 
+}
+

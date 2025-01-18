@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VôleiMatch Reserva</title>
+    <link rel="stylesheet" href="/styles/reserva.css">
+</head>
+<body>
+    <div class="header">
+        <div class="icon-box-left" style="position: absolute; top: 20px; left: 100px;" onclick="window.location.href='eventos.html';">
+            <img src="/imagens/icone calender.png" alt="Calendário" style="width: 60px; height: 60px;">
+            <span style="font-size: 14px;"></span>
+        </div>
+        
+        <div class="icon-box-right" style="position: absolute; top: 20px; right: 100px;" onclick="window.location.href='perfil.html';">
+            <img src="/imagens/icone branco.png" alt="Usuário" style="width: 40px; height: 40px;">
+            <span style="font-size: 14px;"></span>
+        </div>
+    </div>
+    
+    
+    <div class="header">AGENDE SEU HORÁRIO</div>
+    <div class="month-navigation">
+        <button id="prev-month">❮</button>
+        <h3 id="current-month">Janeiro 2025</h3>
+        <button id="next-month">❯</button>
+    </div>
+    <div class="calendar">
+        <button class="arrow left" id="prev">❮</button>
+        <div class="days-container" id="days-container">
+            
+        </div>
+        <button class="arrow right" id="next">❯</button>
+    </div>
+
+    <div class="container">
+        <div class="court">
+            <div class="image-container">
+                <div class="court-title">Quadra 01</div>
+                <img src="/imagens/quadra 1.png" alt="Quadra 01">
+            </div>
+            <div class="time-slots">
+                <a href="#" class="time-slot" data-time="16:00 às 17:00">16:00 às 17:00<br>DISPONÍVEL</a>
+                <a href="#" class="time-slot" data-time="17:00 às 18:00">17:00 às 18:00<br>DISPONÍVEL</a>
+                <a href="#" class="time-slot" data-time="18:00 às 19:00">18:00 às 19:00<br>DISPONÍVEL</a>
+                <a href="#" class="time-slot" data-time="16:00 às 17:00">16:00 às 17:00<br>DISPONÍVEL</a>
+                <a href="#" class="time-slot" data-time="17:00 às 18:00">17:00 às 18:00<br>DISPONÍVEL</a>
+                <a href="#" class="time-slot" data-time="18:00 às 19:00">18:00 às 19:00<br>DISPONÍVEL</a>
+            </div>
+            
+            <button class="trash-icon" onclick="removerQuadra('Quadra 01')">
+                <img src="/imagens/lixeira.png" alt="Remover">
+            </button>
+        </div>
+    
+        <div class="court">
+            <div class="image-container">
+                <div class="court-title">Quadra 02</div>
+                <img src="/imagens/quadra 1.png" alt="Quadra 02">
+            </div>
+            <div class="time-slots">
+                <a href="#" class="time-slot" data-time="16:00 às 17:00">16:00 às 17:00<br>DISPONÍVEL</a>
+                <a href="#" class="time-slot" data-time="17:00 às 18:00">17:00 às 18:00<br>DISPONÍVEL</a>
+                <a href="#" class="time-slot" data-time="18:00 às 19:00">18:00 às 19:00<br>DISPONÍVEL</a>
+                <a href="#" class="time-slot" data-time="16:00 às 17:00">16:00 às 17:00<br>DISPONÍVEL</a>
+                <a href="#" class="time-slot" data-time="17:00 às 18:00">17:00 às 18:00<br>DISPONÍVEL</a>
+                <a href="#" class="time-slot" data-time="18:00 às 19:00">18:00 às 19:00<br>DISPONÍVEL</a>
+            </div>
+            
+            <button class="trash-icon" onclick="removerQuadra('Quadra 02')">
+                <img src="/imagens/lixeira.png" alt="Remover">
+            </button>
+        </div>
+
+        <div class="court">
+            <div class="image-container">
+                <div class="court-title">Quadra 03</div>
+                <img src="/imagens/quadra 1.png" alt="Quadra 02">
+            </div>
+            <div class="time-slots">
+                <a href="#" class="time-slot" data-time="16:00 às 17:00">16:00 às 17:00<br>DISPONÍVEL</a>
+                <a href="#" class="time-slot" data-time="17:00 às 18:00">17:00 às 18:00<br>DISPONÍVEL</a>
+                <a href="#" class="time-slot" data-time="18:00 às 19:00">18:00 às 19:00<br>DISPONÍVEL</a>
+                <a href="#" class="time-slot" data-time="16:00 às 17:00">16:00 às 17:00<br>DISPONÍVEL</a>
+                <a href="#" class="time-slot" data-time="17:00 às 18:00">17:00 às 18:00<br>DISPONÍVEL</a>
+                <a href="#" class="time-slot" data-time="18:00 às 19:00">18:00 às 19:00<br>DISPONÍVEL</a>
+            </div>
+            
+            <button class="trash-icon" onclick="removerQuadra('Quadra 02')">
+                <img src="/imagens/lixeira.png" alt="Remover">
+            </button>
+        </div>
+
+        <div class="court">
+            <div class="image-container">
+                <div class="court-title">Quadra 04</div>
+                <img src="/imagens/quadra 1.png" alt="Quadra 02">
+            </div>
+            <div class="time-slots">
+                <a href="#" class="time-slot" data-time="16:00 às 17:00">16:00 às 17:00<br>DISPONÍVEL</a>
+                <a href="#" class="time-slot" data-time="17:00 às 18:00">17:00 às 18:00<br>DISPONÍVEL</a>
+                <a href="#" class="time-slot" data-time="18:00 às 19:00">18:00 às 19:00<br>DISPONÍVEL</a>
+                <a href="#" class="time-slot" data-time="16:00 às 17:00">16:00 às 17:00<br>DISPONÍVEL</a>
+                <a href="#" class="time-slot" data-time="17:00 às 18:00">17:00 às 18:00<br>DISPONÍVEL</a>
+                <a href="#" class="time-slot" data-time="18:00 às 19:00">18:00 às 19:00<br>DISPONÍVEL</a>
+            </div>
+            
+            <button class="trash-icon" onclick="removerQuadra('Quadra 02')">
+                <img src="/imagens/lixeira.png" alt="Remover">
+            </button>
+        </div>
+    </div>
+    
+        
+       
+    </div>
+
+    <script src="/javascript/reserva.js"></script>
+</body>
+</html>
