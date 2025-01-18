@@ -98,7 +98,6 @@ app.put('/usuarios/:id', async (req, res) => {
 })
 
 
-
 app.delete('/usuarios/:id', async (req, res) => {
 
     await prisma.usuario.delete({
@@ -110,8 +109,6 @@ app.delete('/usuarios/:id', async (req, res) => {
     res.status(204).json({ message: "Usuário deletado com Sucesso!" })
 
 })
-
-
 
 
 // ---------------- QUADRAS ----------------
@@ -150,10 +147,7 @@ app.get('/quadras', async (req, res) => {
     catch{
         res.status(400).json({message: "Informação errada!"})
     }
-    
-
 })
-
 
 
 app.delete('/quadras/:id', async (req, res) => {
@@ -167,8 +161,6 @@ app.delete('/quadras/:id', async (req, res) => {
     res.status(204).json({ message: "Quadra deletada com Sucesso!" })
 
 })
-
-
 
 
 // -------------------- EVENTOS --------------------
@@ -271,7 +263,6 @@ app.patch('/eventos/:id_usuario/:nome/', async (req, res) => {
     res.status(201).json({ message: `Evento ${confirma.confirmacao ? 'confirmado' : 'desconfirmado'} com sucesso!` });
 
 });
-
 
 
 app.delete('/eventos/:id', async (req, res) => {
