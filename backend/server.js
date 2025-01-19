@@ -215,23 +215,58 @@ app.delete('/quadras/:id', async (req, res) => {
 
 // -------------------- EVENTOS --------------------
 
-app.post('/eventos', async (req, res) => {
-    
-    await prisma.eventos.create({
-        data: {
-            nome: req.body.nome,
-            data: req.body.data,
-            horario: req.body.horario,
-            confirmacao: req.body.confirmacao,
-            id_usuario: req.body.id_usuario,
-            id_quadra: req.body.id_quadra,
-            usuario: req.body.usuario,
-            quadra: req.body.quadra
-        }
-    })
 
-    res.status(200).json(req.body)
-})
+app.post('/eventos', async (req, res) => {
+    const { nome, data_horario, confirmacao, id_usuario, id_quadra, usuario, quadra } = req.body;
+
+    try {
+
+        const dataHorario = new Date(data_horario);
+
+        if (isNaN(dataHorario)) {
+            return res.status(400).json({ message: 'Data e horário inválidos! Certifique-se de que seja um formato válido de DateTime.' });
+        }
+
+        const hora = dataHorario.getUTCHours();
+
+        const horasPermitidas = [16, 17, 18, 19, 20, 21];
+
+        if (!horasPermitidas.includes(hora)) {
+            return res.status(400).json({ 
+                message: `Horário inválido! Os horários permitidos são: 16h, 17h, 18h, 19h, 20h e 21h.` 
+            });
+        }
+
+        const eventoExistente = await prisma.eventos.findFirst({
+            where: {
+                data_horario: dataHorario,
+                id_quadra: id_quadra
+            }
+        })
+
+        if (eventoExistente) {
+            return res.status(400).json({
+                message: 'A quadra já está reservada para este horário!'
+            })
+        }
+
+        await prisma.eventos.create({
+            data: {
+                nome,
+                data_horario: dataHorario,
+                confirmacao,
+                id_usuario,
+                id_quadra
+            }
+        });
+
+        res.status(201).json({ message: "Evento cadastrado com sucesso!", evento: req.body });
+    } 
+    catch (erro) {
+        res.status(500).json({ message: 'Erro ao criar evento', erro });
+    }
+});
+
 
 app.get('/eventos', async (req, res) => {
 
