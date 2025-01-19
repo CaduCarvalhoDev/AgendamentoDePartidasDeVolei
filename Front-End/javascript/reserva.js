@@ -129,7 +129,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function removerQuadra(nomeQuadra) {
     if (confirm(`Tem certeza que deseja remover ${nomeQuadra}?`)) {
-        // Lógica para remover a quadra (opcional)
+        
         alert(`${nomeQuadra} removida com sucesso.`);
     }
 }

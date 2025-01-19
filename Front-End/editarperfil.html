@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VôleiMatch Perfil</title>
-    <link rel="stylesheet" href="/styles/editarperfil.css">
+    <link rel="stylesheet" href="/Front-End/styles/editarperfil.css">
 </head>
 <body>
     <div class="container">
@@ -12,24 +12,33 @@
             <a href="reserva.html">←</a>
         </div>
         
-        <h1 class="title">MEU PERFIL</h1>
+        <h1 class="title">EDITAR MEUS DADOS</h1>
         <div class="profile-box">
             <h2 class="profile-title">Meus dados</h2>
             <div class="profile-icon">
-                <img src="/imagens/pessoa fundo.png" alt="Foto de perfil">
+                <img src="/Front-End/imagens/pessoa fundo.png" alt="Foto de perfil">
             </div>
             <form class="profile-form">
                 <div class="form-group">
                     <label for="name">Nome:</label>
-                    <input type="text" id="name" placeholder="Digite seu nome">
+                    <div class="input-container">
+                        <input type="text" id="name" placeholder="Digite seu nome">
+                        <span class="icon-pencil">✏️</span>
+                    </div>
                 </div>
                 <div class="form-group">
                     <label for="contact">Contato:</label>
-                    <input type="email" id="contact" placeholder="Digite seu email">
+                    <div class="input-container">
+                        <input type="email" id="contact" placeholder="Digite seu email">
+                        <span class="icon-pencil">✏️</span>
+                    </div>
                 </div>
                 <div class="form-group">
                     <label for="login">Login:</label>
-                    <input type="text" id="login" placeholder="Digite seu login">
+                    <div class="input-container">
+                        <input type="text" id="login" placeholder="Digite seu login">
+                        <span class="icon-pencil">✏️</span>
+                    </div>
                 </div>
                 <div class="form-group">
                     <label for="password">Senha:</label>
@@ -39,10 +48,7 @@
                     </div>
                 </div>
                 <div class="form-buttons">
-                    
                     <a href="perfil.html" class="btn-confirm no-underline">Confirmar</a>
-
-                    
                     <a href="login.html" class="btn-delete no-underline">Excluir conta</a>
                 </div>
             </form>

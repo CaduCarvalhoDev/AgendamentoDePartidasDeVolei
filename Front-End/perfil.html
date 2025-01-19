@@ -4,97 +4,64 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VôleiMatch Perfil</title>
-    <link rel="stylesheet" href="/styles/perfil.css">
+    <link rel="stylesheet" href="/Front-End/styles/perfil.css">
 </head>
 <body>
     <div class="container">
+    
         <div class="back-arrow">
             <a href="reserva.html">←</a>
         </div>
-        
-       
+
         <div class="top-right-icon">
             <a href="listadeusuarios.html">
-                <img src="/imagens/icon-usuario-cadastrado.png" alt="Ícone de grupo">
+                <img src="/Front-End/imagens/icon-usuario-cadastrado.png" alt="Amigos">
             </a>
         </div>
-
+        
         <h1 class="title">MEU PERFIL</h1>
         <div class="profile-box">
             <h2 class="profile-title">Meus dados</h2>
             <div class="profile-icon">
-                <img src="/imagens/pessoa fundo.png" alt="Foto de perfil">
+                <img src="/Front-End/imagens/pessoa fundo.png" alt="Foto de perfil">
             </div>
-            <form class="profile-form">
-                <div class="form-group">
+            <div class="profile-info">
+                <div class="info-group">
                     <label for="name">Nome:</label>
-                    <input type="text" id="name" placeholder="Digite seu nome">
+                    <input type="text" id="name" value="João Silva" disabled>
                 </div>
-                <div class="form-group">
+                <div class="info-group">
                     <label for="contact">Contato:</label>
-                    <input type="email" id="contact" placeholder="Digite seu email">
+                    <input type="email" id="contact" value="joao.silva@email.com" disabled>
                 </div>
-                <div class="form-group">
+                <div class="info-group">
                     <label for="login">Login:</label>
-                    <input type="text" id="login" placeholder="Digite seu login">
+                    <input type="text" id="login" value="joaosilva" disabled>
                 </div>
-                <div class="form-group">
+                <div class="info-group">
                     <label for="password">Senha:</label>
                     <div class="password-field">
-                        <input type="password" id="password" placeholder="Digite sua senha">
-                        <button type="button" class="toggle-password">👁️</button>
+                        <input type="password" id="password" value="12345678" disabled>
+                        <button type="button" class="toggle-password" onclick="togglePassword()">👁️</button>
                     </div>
                 </div>
-                
-                <div class="form-group">
-                    <a href="editarperfil.html" class="edit-button">Editar dados</a>
-                </div>
-            </form>
+                <a href="editarperfil.html" class="edit-button">Editar dados</a>
+            </div>
         </div>
     </div>
 
-    <style>
-        
-        .edit-button {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 10px 30px;
-            background-color: #FFFFFF;
-            color: #0044cc;
-            text-decoration: none;
-            border: 2px solid #0044cc;
-            border-radius: 25px;
-            font-family: Arial, sans-serif;
-            font-size: 16px;
-            text-align: center;
-            transition: background-color 0.3s ease, color 0.3s ease;
+    <script>
+        function togglePassword() {
+            const passwordField = document.getElementById('password');
+            const toggleButton = document.querySelector('.toggle-password');
+            if (passwordField.type === 'password') {
+                passwordField.type = 'text';
+                toggleButton.textContent = '👁️'; 
+            } else {
+                passwordField.type = 'password';
+                toggleButton.textContent = '👁️'; 
+            }
         }
-
-        .edit-button:hover {
-            background-color: #0044cc;
-            color: #FFFFFF;
-        }
-
-        
-        .top-right-icon {
-            position: absolute;
-            top: 40px; 
-            right: 150px; 
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-       
-        .top-right-icon img {
-            width: 50px; 
-            height: 50px; 
-        }
-
-       
-        .top-right-icon:hover img {
-            filter: brightness(0.8);
-        }
-    </style>
+    </script>
 </body>
 </html>

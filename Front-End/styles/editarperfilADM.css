@@ -6,7 +6,7 @@
 }
 
 body {
-    background-image: url('/imagens/fundo\ azul.png');
+    background-image: url('/Front-End/imagens/fundo\ azul.png');
     display: flex;
     justify-content: center;
     align-items: center;

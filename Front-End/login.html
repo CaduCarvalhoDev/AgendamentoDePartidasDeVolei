@@ -9,10 +9,10 @@
 <body>
     <div class="right-panel">
         <h2>
-            <img src="/Front-End//imagens/pessoa fundo.png" alt="Ícone do login" class="login-icon"> 
+            <img src="/Front-End/imagens/pessoa fundo.png" alt="Ícone do login" class="login-icon"> 
         </h2>
         
-        <form>
+        <form onsubmit="return handleLogin(event)">
             <div class="form-group">
                 <label for="login"></label>
                 <input type="text" id="login" placeholder="Login">
@@ -21,18 +21,21 @@
                 <label for="senha"></label>
                 <input type="password" id="senha" placeholder="Senha">
             </div>
-            <button class="login-button">Entrar</button>
+            <button type="submit" class="login-button">Entrar</button>
             <div class="links">
-                
                 <br>
                 <span>&#151;&#151;&#151;&#151;&#151; Ainda não tem uma conta? &#151;&#151;&#151;&#151;&#151 </span>
                 <a href="cadastro.html">Cadastre-se</a>
             </div>
-            
         </form>
-
-        
-        
     </div>
+
+    <script>
+        function handleLogin(event) {
+            event.preventDefault(); 
+            
+            window.location.href = "reserva.html";
+        }
+    </script>
 </body>
 </html>
