@@ -1,6 +1,7 @@
 import express from 'express'
 import { PrismaClient } from '@prisma/client'
 import { body, validationResult } from 'express-validator'
+import bcrypt from 'bcrypt';
 
 const prisma = new PrismaClient()
 
@@ -17,6 +18,55 @@ const validarUsuario = [
 ]
 
 // ------------ USUARIOS ------------
+
+
+app.post('/login', [
+    body('login').notEmpty().withMessage('Login é obrigatório'),
+    body('senha').notEmpty().withMessage('Senha é obrigatória')
+], async (req, res) => {
+
+    const erros = validationResult(req);
+    if (!erros.isEmpty()){
+        return res.status(400).json({erros: erros.array()});
+    }
+
+    const {login, senha} = req.body;
+
+    try {
+
+        const usuario = await prisma.usuario.findUnique({
+            where: {
+                login: login,
+                senha: senha
+            }
+        });
+
+        if (!usuario) {
+            return res.status(404).json({message: 'Usuário não encontrado ou senha inválida!'});
+        }
+
+
+        if (usuario.adm) {
+            return res.status(200).json({
+                message: 'Login realizado com sucesso!',
+                role: 'admin',
+            })
+        }
+        else {
+            return res.status(200).json({
+                message: 'Login realizado com sucesso!',
+                role: 'usuário'
+            })
+        }
+
+    }
+
+    catch (erro){
+        res.status(500).json({message: 'Erro ao realizar login', erro});
+    }
+
+})
+
 
 app.post('/usuarios', validarUsuario, async (req, res) => {
 
