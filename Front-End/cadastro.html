@@ -40,23 +40,6 @@
     </div>
 
     
-    <script>
-        document.getElementById('register-button').addEventListener('click', function () {
-            
-            const nome = document.getElementById('nome').value.trim();
-            const contato = document.getElementById('contato').value.trim();
-            const login = document.getElementById('login').value.trim();
-            const senha = document.getElementById('senha').value.trim();
-
-            
-            if (nome && contato && login && senha) {
-                
-                window.location.href = 'reserva.html';
-            } else {
-                
-                alert('Por favor, preencha todos os campos antes de continuar.');
-            }
-        });
-    </script>
+    <script src="/Front-End/javascript/cadastro.js"> </script>
 </body>
 </html>
