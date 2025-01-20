@@ -1,15 +1,13 @@
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
     const daysContainer = document.getElementById("days-container");
     const prevButton = document.getElementById("prev");
     const nextButton = document.getElementById("next");
     const prevMonthButton = document.getElementById("prev-month");
     const nextMonthButton = document.getElementById("next-month");
     const currentMonthLabel = document.getElementById("current-month");
-    const timeSlots = document.querySelectorAll(".time-slot");
-
+    const courtsContainer = document.querySelector(".container"); // Contêiner das quadras
     let selectedDay = null;
     let selectedTime = null;
-
 
     const months = [
         { name: "Janeiro", days: 31 },
@@ -26,9 +24,90 @@ document.addEventListener("DOMContentLoaded", () => {
         { name: "Dezembro", days: 31 }
     ];
 
+    const loggedUserId = localStorage.getItem("userId") || null;
+
+    if (!loggedUserId) {
+        alert("Usuário não está logado. Faça o login primeiro.");
+        window.location.href = "login.html";
+        return;
+    }
+
     let currentMonthIndex = 0; 
     let startIndex = 0;
     const maxVisibleDays = 7;
+
+    async function loadCourts() {
+        try {
+            const response = await fetch("http://localhost:3030/quadras"); // URL do endpoint para carregar quadras
+            if (!response.ok) {
+                throw new Error("Erro ao carregar quadras");
+            }
+            const courts = await response.json();
+
+            renderCourts(courts);
+        } catch (error) {
+            console.error("Erro ao carregar quadras:", error);
+            alert("Não foi possível carregar as quadras. Tente novamente mais tarde.");
+        }
+    }
+
+    function renderCourts(courts) {
+        courtsContainer.innerHTML = ""; // Limpa as quadras existentes
+        courts.forEach((court) => {
+            const courtElement = document.createElement("div");
+            courtElement.classList.add("court");
+            courtElement.dataset.courtId = court.id;
+
+            courtElement.innerHTML = `
+                <div class="image-container">
+                    <div class="court-title">${court.nome}</div>
+                    <img src="/Front-End/imagens/quadra 1.png" alt="${court.nome}">
+                </div>
+                <div class="time-slots">
+                    <a href="#" class="time-slot" data-time="16:00 às 17:00">16:00 às 17:00<br>DISPONÍVEL</a>
+                    <a href="#" class="time-slot" data-time="17:00 às 18:00">17:00 às 18:00<br>DISPONÍVEL</a>
+                    <a href="#" class="time-slot" data-time="18:00 às 19:00">18:00 às 19:00<br>DISPONÍVEL</a>
+                    <a href="#" class="time-slot" data-time="19:00 às 20:00">19:00 às 20:00<br>DISPONÍVEL</a>
+                    <a href="#" class="time-slot" data-time="20:00 às 21:00">20:00 às 21:00<br>DISPONÍVEL</a>
+                    <a href="#" class="time-slot" data-time="21:00 às 22:00">21:00 às 22:00<br>DISPONÍVEL</a>
+                </div>
+            `;
+
+            courtsContainer.appendChild(courtElement);
+
+            // Reatribuir eventos para os novos time-slots
+            const timeSlots = courtElement.querySelectorAll(".time-slot");
+            timeSlots.forEach((slot) => {
+                slot.addEventListener("click", (event) => {
+                    event.preventDefault();
+
+                    document.querySelectorAll(".time-slot").forEach((s) => s.classList.remove("selected"));
+
+                    slot.classList.add("selected");
+                    selectedTime = slot.dataset.time;
+
+                    console.log(`Horário selecionado: ${selectedTime}`);
+                });
+
+                slot.addEventListener("dblclick", () => {
+                    if (selectedDay && selectedTime) {
+                        const { name } = months[currentMonthIndex];
+                        const courtId = courtElement.dataset.courtId;
+
+                        if (!courtId) {
+                            alert("ID da quadra não encontrado.");
+                            return;
+                        }
+
+                        const query = `detalhes-horario.html?mes=${name}&dia=${selectedDay}&horario=${selectedTime}&id_usuario=${loggedUserId}&id_quadra=${courtId}`;
+                        window.location.href = query;
+                    } else {
+                        alert("Por favor, selecione um dia e um horário antes de continuar.");
+                    }
+                });
+            });
+        });
+    }
 
     function updateMonth() {
         const { name, days } = months[currentMonthIndex];
@@ -55,7 +134,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 selectedDay = day;
 
                 selectedTime = null;
-                timeSlots.forEach(slot => slot.classList.remove("selected"));
+                document.querySelectorAll(".time-slot").forEach(slot => slot.classList.remove("selected"));
 
                 console.log(`Dia selecionado: ${selectedDay}`);
             });
@@ -97,32 +176,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    timeSlots.forEach(slot => {
-        slot.addEventListener("click", (event) => {
-            event.preventDefault();
-
-            timeSlots.forEach(s => s.classList.remove("selected"));
-
-            slot.classList.add("selected");
-            selectedTime = slot.dataset.time;
-
-            console.log(`Horário selecionado: ${selectedTime}`);
-        });
-    });
-
-    timeSlots.forEach(slot => {
-        slot.addEventListener("dblclick", () => {
-            if (selectedDay && selectedTime) {
-                const { name } = months[currentMonthIndex];
-                const query = `detalhes-horario.html?mes=${name}&dia=${selectedDay}&horario=${selectedTime}`;
-                window.location.href = query;
-            } else {
-                alert("Por favor, selecione um dia e um horário antes de continuar.");
-            }
-        });
-    });
-
     updateMonth();
+    await loadCourts(); // Carregar quadras dinamicamente
 });
-
-
