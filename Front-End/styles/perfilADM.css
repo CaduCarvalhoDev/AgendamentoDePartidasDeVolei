@@ -41,6 +41,22 @@ body {
     color: #000; 
 }
 
+.top-right-icon {
+    position: absolute;
+    top: 0px; 
+    right: -300px; 
+}
+
+.top-right-icon a img {
+    width: 90px; 
+    height: auto;
+    cursor: pointer;
+}
+
+.top-right-icon a img:hover {
+    opacity: 0.8; 
+}
+
 .title {
     font-size: 24px;
     margin-bottom: 20px;

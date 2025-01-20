@@ -126,3 +126,10 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
+
+function removerQuadra(nomeQuadra) {
+    if (confirm(`Tem certeza que deseja remover ${nomeQuadra}?`)) {
+        
+        alert(`${nomeQuadra} removida com sucesso.`);
+    }
+}
