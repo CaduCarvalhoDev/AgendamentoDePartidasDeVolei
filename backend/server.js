@@ -293,7 +293,8 @@ app.get('/eventos', async (req, res) => {
         const eventos = await prisma.eventos.findMany({
             where: filtros,
             include: {
-                quadra: true
+                quadra: true,
+                usuario: true
             }
         })
 
