@@ -53,7 +53,7 @@ body {
     transform: translateX(-50%);
     z-index: 10;
     background-color: transparent;
-    width: 100%;
+    width:50%;
 }
 
 .search-container {
