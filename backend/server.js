@@ -1,7 +1,6 @@
 import express from 'express'
 import { PrismaClient } from '@prisma/client'
 import { body, validationResult } from 'express-validator'
-import bcrypt from 'bcrypt';
 import cors from 'cors';
 
 
@@ -25,52 +24,37 @@ const validarUsuario = [
 // ------------ USUARIOS ------------
 
 
-app.post('/login', [
-    body('login').notEmpty().withMessage('Login é obrigatório'),
-    body('senha').notEmpty().withMessage('Senha é obrigatória')
-], async (req, res) => {
-
-    const erros = validationResult(req);
-    if (!erros.isEmpty()){
-        return res.status(400).json({erros: erros.array()});
-    }
-
-    const {login, senha} = req.body;
+// Endpoint de login
+app.post('/login', async (req, res) => {
+    const { login, senha } = req.body;
 
     try {
-
         const usuario = await prisma.usuario.findUnique({
-            where: {
-                login: login,
-                senha: senha
-            }
+            where: { login },
         });
 
         if (!usuario) {
-            return res.status(404).json({message: 'Usuário não encontrado ou senha inválida!'});
+            return res.status(404).json({ message: 'Usuário não encontrado.' });
         }
 
 
-        if (usuario.adm) {
-            return res.status(200).json({
-                message: 'Login realizado com sucesso!',
-                role: 'admin',
-            })
-        }
-        else {
-            return res.status(200).json({
-                message: 'Login realizado com sucesso!',
-                role: 'usuário'
-            })
+        if (usuario.senha !== senha) {
+            return res.status(401).json({ message: 'Senha incorreta.' });
         }
 
+        // Retornar informações do usuário
+        return res.status(200).json({
+            id: usuario.id,
+            message: 'Login realizado com sucesso!',
+            role: usuario.adm ? 'admin' : 'usuário',
+
+        });
+    } catch (error) {
+        console.error('Erro ao fazer login:', error);
+        res.status(500).json({ message: 'Erro ao fazer login', error });
     }
+});
 
-    catch (erro){
-        res.status(500).json({message: 'Erro ao realizar login', erro});
-    }
-
-})
 
 
 app.post('/usuarios', validarUsuario, async (req, res) => {
@@ -134,24 +118,47 @@ app.get('/usuarios', async (req, res) => {
 })
 
 
-app.put('/usuarios/:id', async (req, res) => {
+app.get('/usuarios/:login', async (req, res) => {
+    const { login } = req.params;
 
-    await prisma.usuario.update({
-        where: {
-            id: req.params.id
-        },
-        data: {
-            email: req.body.email,
-            name: req.body.name,
-            login: req.body.login,
-            senha: req.body.senha,
-            adm: req.body.adm
+    try {
+        const usuario = await prisma.usuario.findUnique({
+            where: { login },
+            select: {
+                name: true,
+                email: true,
+                login: true,
+                senha: true,
+            },
+        });
+
+        if (!usuario) {
+            return res.status(404).json({ message: 'Usuário não encontrado' });
         }
-    })
 
-    res.status(200).json(req.body)
-})
+        res.status(200).json(usuario);
+    } catch (erro) {
+        res.status(500).json({ message: 'Erro ao buscar usuário', erro });
+    }
+});
 
+
+app.put('/usuarios/:id', async (req, res) => {
+    const { id } = req.params;
+    const { name, email, login, senha } = req.body;
+
+    try {
+        const usuario = await prisma.usuario.update({
+            where: { id },
+            data: { name, email, login, senha },
+        });
+
+        res.status(200).json(usuario);
+    } catch (error) {
+        console.error('Erro ao atualizar usuário:', error);
+        res.status(500).json({ message: 'Erro ao atualizar usuário', error });
+    }
+});
 
 app.delete('/usuarios/:id', async (req, res) => {
 
