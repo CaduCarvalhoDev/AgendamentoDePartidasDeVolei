@@ -10,18 +10,18 @@ document.addEventListener("DOMContentLoaded", async () => {
     let selectedTime = null;
 
     const months = [
-        { name: "Janeiro", days: 31 },
-        { name: "Fevereiro", days: 28 }, 
-        { name: "Março", days: 31 },
-        { name: "Abril", days: 30 },
-        { name: "Maio", days: 31 },
-        { name: "Junho", days: 30 },
-        { name: "Julho", days: 31 },
-        { name: "Agosto", days: 31 },
-        { name: "Setembro", days: 30 },
-        { name: "Outubro", days: 31 },
-        { name: "Novembro", days: 30 },
-        { name: "Dezembro", days: 31 }
+        { name: "Janeiro", nmes: "01",days: 31 },
+        { name: "Fevereiro", nmes: "02",days: 28 }, 
+        { name: "Março", nmes:"03", days: 31 },
+        { name: "Abril", nmes: "04", days: 30 },
+        { name: "Maio", nmes: "05",days: 31 },
+        { name: "Junho", nmes: "06",days: 30 },
+        { name: "Julho", nmes: "07",days: 31 },
+        { name: "Agosto", nmes: "08",days: 31 },
+        { name: "Setembro", nmes: "09",days: 30 },
+        { name: "Outubro", nmes: "10",days: 31 },
+        { name: "Novembro", nmes: "11",days: 30 },
+        { name: "Dezembro", nmes: "12",days: 31 }
     ];
 
     const loggedUserId = localStorage.getItem("userId") || null;
@@ -111,7 +111,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
     function updateMonth() {
-        const { name, days } = months[currentMonthIndex];
+        const { name, days, nmes } = months[currentMonthIndex];
         currentMonthLabel.textContent = `${name} 2025`;
         renderDays(days);
     }
@@ -138,6 +138,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                 document.querySelectorAll(".time-slot").forEach(slot => slot.classList.remove("selected"));
 
                 console.log(`Dia selecionado: ${selectedDay}`);
+
             });
 
             daysContainer.appendChild(dayButton);
