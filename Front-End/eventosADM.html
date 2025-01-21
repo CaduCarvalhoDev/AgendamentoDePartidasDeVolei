@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VôleiMatch Eventos</title>
+    <link rel="stylesheet" href="/Front-End/styles/eventos.css">
+    <style>
+        
+        .add-icon {
+            position: absolute;
+            top: 20px; 
+            right: 20px; 
+            width: 24px; 
+            height: 24px; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .add-icon img {
+            width: 100%; 
+            height: auto;
+        }
+
+        .add-icon:hover {
+            transform: scale(1.1); 
+        }
+    </style>
+</head>
+<body>
+    <div class="back-arrow">
+        <a href="reservaADM.html">←</a>
+    </div>
+
+    
+<div class="add-icon" style="width: 60px; height: 60px;" onclick="window.location.href='cadastrarquadra.html'">
+    <img src="/Front-End/imagens/icon-mais+.png" alt="Adicionar Evento">
+</div>
+
+
+
+    
+    
+
+    <div class="header">EVENTOS CRIADOS</div>
+    <div class="container">
+        <div class="grid">
+        
+        </div>
+    </div>
+    <script src="/Front-End/javascript/eventos.js"></script>
+</body>
+</html>

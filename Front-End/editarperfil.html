@@ -9,7 +9,7 @@
 <body>
     <div class="container">
         <div class="back-arrow">
-            <a href="reserva.html">←</a>
+            <a href="perfil.html">←</a>
         </div>
         
         <h1 class="title">EDITAR MEUS DADOS</h1>
@@ -55,6 +55,14 @@
         </div>
     </div>
 
-    <script src="/Front-End/javascript/editarperfil.js"></script>
+    <script>
+        document.querySelector('.toggle-password').addEventListener('click', function () {
+            const passwordField = document.getElementById('password');
+            const isPassword = passwordField.getAttribute('type') === 'password';
+            
+            passwordField.setAttribute('type', isPassword ? 'text' : 'password');
+            this.textContent = isPassword ? '👁️'  : '👁️'; 
+        });
+    </script>
 </body>
 </html>

@@ -92,7 +92,7 @@ body {
     transform: translateY(-50%);
     font-size: 16px;
     cursor: pointer;
-    color: #000; /* Preto */
+    color: #000; 
 }
 
 .password-field {
@@ -102,10 +102,25 @@ body {
 
 .password-field input {
     width: 100%;
-    padding: 8px 12px;
+    padding-right: 40px; 
+    background: #ffffff; 
     border: 1px solid #ccc;
     border-radius: 8px;
     font-size: 14px;
+    color: #333; 
+    appearance: none; 
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+.password-field input::-ms-reveal,
+.password-field input::-ms-clear {
+    display: none;
+}
+
+.password-field input::before,
+.password-field input::after {
+    content: none;
 }
 
 .password-field .toggle-password {
@@ -117,7 +132,16 @@ body {
     border: none;
     font-size: 16px;
     cursor: pointer;
-    color: #666;
+    z-index: 10;
+}
+
+.password-field input:focus {
+    border-color: #007bff; 
+    outline: none;
+}
+
+.password-field input::-webkit-input-placeholder {
+    color: #aaa; 
 }
 
 .no-underline {
@@ -161,3 +185,5 @@ body {
     background-color: #f44336; 
     color: white;
 }
+
+
