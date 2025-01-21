@@ -3,6 +3,7 @@ document.getElementById('register-button').addEventListener('click', async funct
     const contato = document.getElementById('contato').value.trim();
     const login = document.getElementById('login').value.trim();
     const senha = document.getElementById('senha').value.trim();
+    
 
     if (nome && contato && login && senha) {
         try {
@@ -17,6 +18,16 @@ document.getElementById('register-button').addEventListener('click', async funct
                     adm: false
                 }),
             });
+
+            if (response.ok){
+                const userInfoResponse = await fetch(`http://localhost:3030/usuarios/${login}`);
+                if (userInfoResponse.ok){
+                    const userInfo = await userInfoResponse.json();
+
+                    localStorage.setItem('login', userInfo.login);
+                    localStorage.setItem('userId', userInfo.id);
+                }
+            }
 
             if (response.ok) {
                 alert('Usuário cadastrado com sucesso!');

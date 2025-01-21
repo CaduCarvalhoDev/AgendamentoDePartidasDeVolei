@@ -127,6 +127,7 @@ app.get('/usuarios/:login', async (req, res) => {
         const usuario = await prisma.usuario.findUnique({
             where: { login },
             select: {
+                id: true,      // Adicione o campo id aqui
                 name: true,
                 email: true,
                 login: true,
@@ -143,6 +144,7 @@ app.get('/usuarios/:login', async (req, res) => {
         res.status(500).json({ message: 'Erro ao buscar usuário', erro });
     }
 });
+
 
 
 app.put('/usuarios/:id', async (req, res) => {

@@ -3,13 +3,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const userId = localStorage.getItem('userId');
     const loggedUserLogin = localStorage.getItem('login');
 
+    console.log(userId)
+    console.log(loggedUserLogin)
+
     if (!userId) {
         alert('Erro: ID do usuário não encontrado. Faça login novamente.');
         window.location.href = 'login.html';
         return;
     }
 
-    // Preencher os campos do perfil com os dados do usuário
+
     const populateFields = async () => {
         try {
             const response = await fetch(`http://localhost:3030/usuarios/${loggedUserLogin}`);
@@ -104,4 +107,20 @@ document.addEventListener('DOMContentLoaded', () => {
     populateFields();
     handleUpdate();
     handleDelete();
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    const passwordField = document.getElementById('password');
+    const toggleButton = document.querySelector('.toggle-password');
+
+    toggleButton.addEventListener('click', () => {
+        // Verifica o tipo atual do campo de senha
+        if (passwordField.type === 'password') {
+            passwordField.type = 'text'; // Altera para texto
+            toggleButton.textContent = '👁️'; // Altera o ícone
+        } else {
+            passwordField.type = 'password'; // Altera para senha
+            toggleButton.textContent = '👁️'; // Altera o ícone
+        }
+    });
 });

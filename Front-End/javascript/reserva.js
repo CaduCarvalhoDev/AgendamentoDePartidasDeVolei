@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const prevMonthButton = document.getElementById("prev-month");
     const nextMonthButton = document.getElementById("next-month");
     const currentMonthLabel = document.getElementById("current-month");
-    const courtsContainer = document.querySelector(".container"); // Contêiner das quadras
+    const courtsContainer = document.querySelector(".container");
     let selectedDay = null;
     let selectedTime = null;
 
@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         { name: "Novembro", nmes: "11",days: 30 },
         { name: "Dezembro", nmes: "12",days: 31 }
     ];
-
+    
     const loggedUserId = localStorage.getItem("userId") || null;
 
     if (!loggedUserId) {
