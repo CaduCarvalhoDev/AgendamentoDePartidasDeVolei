@@ -70,6 +70,16 @@ document.addEventListener("DOMContentLoaded", async () => {
                 throw new Error(error.message || "Erro ao cadastrar o evento.");
             }
     
+            localStorage.setItem("eventDetails", JSON.stringify({
+                quadraNome: quadraInfo.textContent,
+                horario: horario,
+                dia: dia,
+                mes: mes,
+                nomeEvento: eventName,
+                idUsuario: idUsuario,
+                idQuadra: idQuadra,
+            }));
+
             alert("Evento cadastrado com sucesso!");
             window.location.href = "eventoconfirmado.html";
         } catch (error) {

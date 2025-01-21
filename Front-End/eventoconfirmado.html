@@ -6,7 +6,6 @@
     <title>VôleiMatch Confirmação</title>
     <link rel="stylesheet" href="/Front-End/styles/eventoconfirmado.css">
     <style>
-        
         .back-arrow a {
             text-decoration: none; 
             color: inherit; 
@@ -17,25 +16,35 @@
         .back-arrow a:hover {
             color: #000;
         }
+
+        .event-details {
+            margin-top: 20px;
+            font-size: 18px;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="card">
-            
             <div class="back-arrow">
                 <a href="reserva.html" class="arrow-link">←</a>
             </div>
             <div class="image-section">
-                <div class="quadra-title">Quadra 02</div>
-                <img src="/Front-End/imagens/quadra 1.png" alt="Quadra 02">
+                <div class="quadra-title">Quadra Selecionada</div>
+                <img src="/Front-End/imagens/quadra 1.png" alt="Quadra Selecionada">
                 <div class="time-box">
-                    <p>16:00 às 17:00</p>
-                    <p>DIA 12</p>
+                    <p class="time-info">Horário Selecionado</p>
+                    <p class="date-info">Dia Selecionado</p>
                 </div>
             </div>
             <div class="confirmation">RESERVA CONFIRMADA <span class="check">✔</span></div>
+            <div class="event-details">
+                <p><strong>Nome do Evento:</strong> <span class="event-name"></span></p>
+                <p><strong>ID do Usuário:</strong> <span class="user-id"></span></p>
+                <p><strong>ID da Quadra:</strong> <span class="court-id"></span></p>
+            </div>
         </div>
     </div>
+    <script src="/Front-End/javascript/eventoconfirmado.js"></script>
 </body>
 </html>

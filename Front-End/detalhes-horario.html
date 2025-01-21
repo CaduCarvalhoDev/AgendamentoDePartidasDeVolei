@@ -21,10 +21,11 @@
             </div>
             <div class="form-section">
                 
-                <input type="text" id="event-id" class="input" placeholder="ID DO EVENTO">
+                <input type="text" id="event-id" class="input" placeholder="NOME DO EVENTO">
                 
                 
-                <button class="confirm-button" onclick="window.location.href='eventoconfirmado.html'">Confirmar reserva</button>
+                <button class="confirm-button" onclick="window.location.href = `eventoconfirmado.html?id_quadra=${idQuadra}&horario=${encodeURIComponent(horario)}&dia=${dia}&mes=${mes}&nome_evento=${encodeURIComponent(eventName)}&id_usuario=${idUsuario}`;
+">Confirmar reserva</button>
             </div>
         </div>
     </div>
