@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     async function loadCourts() {
         try {
-            const response = await fetch("http://localhost:3030/quadras"); // URL do endpoint para carregar quadras
+            const response = await fetch("http://localhost:3030/quadras");
             if (!response.ok) {
                 throw new Error("Erro ao carregar quadras");
             }
@@ -52,7 +52,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
     function renderCourts(courts) {
-        courtsContainer.innerHTML = ""; // Limpa as quadras existentes
+        courtsContainer.innerHTML = "";
         courts.forEach((court) => {
             const courtElement = document.createElement("div");
             courtElement.classList.add("court");
@@ -75,7 +75,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
             courtsContainer.appendChild(courtElement);
 
-            // Reatribuir eventos para os novos time-slots
+
             const timeSlots = courtElement.querySelectorAll(".time-slot");
             timeSlots.forEach((slot) => {
                 slot.addEventListener("click", (event) => {
@@ -93,18 +93,19 @@ document.addEventListener("DOMContentLoaded", async () => {
                     if (selectedDay && selectedTime) {
                         const { name } = months[currentMonthIndex];
                         const courtId = courtElement.dataset.courtId;
-
+                
                         if (!courtId) {
                             alert("ID da quadra não encontrado.");
                             return;
                         }
-
+                
                         const query = `detalhes-horario.html?mes=${name}&dia=${selectedDay}&horario=${selectedTime}&id_usuario=${loggedUserId}&id_quadra=${courtId}`;
                         window.location.href = query;
                     } else {
                         alert("Por favor, selecione um dia e um horário antes de continuar.");
                     }
                 });
+                
             });
         });
     }
