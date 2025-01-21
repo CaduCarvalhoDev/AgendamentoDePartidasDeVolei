@@ -100,3 +100,7 @@ img {
 .confirmation .check {
     color: green;
 }
+
+.event-details p{
+    color: black;
+}

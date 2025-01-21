@@ -20,8 +20,6 @@ document.addEventListener("DOMContentLoaded", () => {
             timeInfo.textContent = eventDetails.horario || "Horário não disponível";
             dateInfo.textContent = `Dia ${eventDetails.dia} de ${eventDetails.mes}` || "Data não disponível";
             eventNameElement.textContent = eventDetails.nomeEvento || "Não informado";
-            userIdElement.textContent = eventDetails.idUsuario || "Não informado";
-            courtIdElement.textContent = eventDetails.idQuadra || "Não informado";
 
 
             localStorage.removeItem("eventDetails");
