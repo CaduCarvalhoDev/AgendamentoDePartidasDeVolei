@@ -127,7 +127,7 @@ app.get('/usuarios/:login', async (req, res) => {
         const usuario = await prisma.usuario.findUnique({
             where: { login },
             select: {
-                id: true,      // Adicione o campo id aqui
+                id: true,      
                 name: true,
                 email: true,
                 login: true,

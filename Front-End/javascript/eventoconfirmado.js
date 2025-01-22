@@ -3,8 +3,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const timeInfo = document.querySelector(".time-info");
     const dateInfo = document.querySelector(".date-info");
     const eventNameElement = document.querySelector(".event-name");
-    const userIdElement = document.querySelector(".user-id");
-    const courtIdElement = document.querySelector(".court-id");
 
     function loadEventDetails() {
         try {

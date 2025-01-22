@@ -2,14 +2,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const userId = localStorage.getItem('userId');
     const loggedUserLogin = localStorage.getItem('login');
 
-    console.log(userId);
-    console.log(loggedUserLogin);
+
     if (!userId) {
         alert('Erro: ID do usuário não encontrado. Faça login novamente.');
         window.location.href = 'login.html';
         return;
     }
-    // Preencher os campos do perfil com os dados do usuário
+
     const populateFields = async () => {
         try {
             const response = await fetch(`http://localhost:3030/usuarios/${loggedUserLogin}`);
@@ -27,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
             alert('Erro ao carregar os dados do usuário');
         }
     };
-    // Atualizar os dados do usuário
+
     const handleUpdate = () => {
         const confirmButton = document.querySelector('.btn-confirm');
         if (!confirmButton) return;
@@ -38,8 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const login = document.getElementById('login').value.trim();
             const senha = document.getElementById('password').value.trim();
             try {
-                // Log para depuração
-                console.log('Dados enviados:', { name, email, login, senha });
+
                 const response = await fetch(`http://localhost:3030/usuarios/${userId}`, {
                     method: 'PUT',
                     headers: { 'Content-Type': 'application/json' },

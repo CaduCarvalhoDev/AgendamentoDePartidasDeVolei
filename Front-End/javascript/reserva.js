@@ -86,7 +86,6 @@ document.addEventListener("DOMContentLoaded", async () => {
                     slot.classList.add("selected");
                     selectedTime = slot.dataset.time;
 
-                    console.log(`Horário selecionado: ${selectedTime}`);
                 });
 
                 slot.addEventListener("dblclick", () => {
@@ -137,7 +136,6 @@ document.addEventListener("DOMContentLoaded", async () => {
                 selectedTime = null;
                 document.querySelectorAll(".time-slot").forEach(slot => slot.classList.remove("selected"));
 
-                console.log(`Dia selecionado: ${selectedDay}`);
 
             });
 
@@ -179,5 +177,5 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
 
     updateMonth();
-    await loadCourts(); // Carregar quadras dinamicamente
+    await loadCourts();
 });

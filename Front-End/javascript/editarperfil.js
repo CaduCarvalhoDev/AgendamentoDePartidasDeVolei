@@ -3,8 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const userId = localStorage.getItem('userId');
     const loggedUserLogin = localStorage.getItem('login');
 
-    console.log(userId)
-    console.log(loggedUserLogin)
+
 
     if (!userId) {
         alert('Erro: ID do usuário não encontrado. Faça login novamente.');
@@ -32,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    // Atualizar os dados do usuário
+
     const handleUpdate = () => {
         const confirmButton = document.querySelector('.btn-confirm');
         if (!confirmButton) return;
@@ -46,8 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const senha = document.getElementById('password').value.trim();
 
             try {
-                // Log para depuração
-                console.log('Dados enviados:', { name, email, login, senha });
+
 
                 const response = await fetch(`http://localhost:3030/usuarios/${userId}`, {
                     method: 'PUT',
@@ -114,13 +112,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const toggleButton = document.querySelector('.toggle-password');
 
     toggleButton.addEventListener('click', () => {
-        // Verifica o tipo atual do campo de senha
+
         if (passwordField.type === 'password') {
-            passwordField.type = 'text'; // Altera para texto
-            toggleButton.textContent = '👁️'; // Altera o ícone
+            passwordField.type = 'text'; 
+            toggleButton.textContent = '👁️'; 
         } else {
-            passwordField.type = 'password'; // Altera para senha
-            toggleButton.textContent = '👁️'; // Altera o ícone
+            passwordField.type = 'password'; 
+            toggleButton.textContent = '👁️';
         }
     });
 });

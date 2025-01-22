@@ -57,7 +57,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 selectedTime = null;
                 timeSlots.forEach(slot => slot.classList.remove("selected"));
 
-                console.log(`Dia selecionado: ${selectedDay}`);
             });
 
             daysContainer.appendChild(dayButton);
@@ -106,7 +105,6 @@ document.addEventListener("DOMContentLoaded", () => {
             slot.classList.add("selected");
             selectedTime = slot.dataset.time;
 
-            console.log(`Horário selecionado: ${selectedTime}`);
         });
     });
 
