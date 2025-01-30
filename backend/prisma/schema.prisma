@@ -37,8 +37,8 @@ model Eventos{
   nome        String      @unique
   data_horario DateTime    
   confirmacao Boolean
-  id_usuario  String
-  id_quadra   String
+  id_usuario  String      @db.ObjectId
+  id_quadra   String      @db.ObjectId
 
   usuario     Usuario     @relation(fields: [id_usuario], references: [id], onDelete: Cascade)
   quadra      Quadras     @relation(fields: [id_quadra], references: [id], onDelete: Cascade)
